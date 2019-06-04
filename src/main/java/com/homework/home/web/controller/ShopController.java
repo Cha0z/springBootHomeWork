@@ -3,12 +3,11 @@ package com.homework.home.web.controller;
 import com.homework.home.models.Shop;
 import com.homework.home.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class ShopController {
 
 
