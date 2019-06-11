@@ -1,10 +1,8 @@
 package com.homework.home.map;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -13,7 +11,8 @@ import java.util.Objects;
 public class InnerPair<K, V> {
     private K key;
     private V value;
-    private List<InnerPair<K, V>> elements;
+
+    private InnerPair nextElement;
 
     @Override
     public boolean equals(Object o) {
@@ -21,13 +20,20 @@ public class InnerPair<K, V> {
         if (o == null || getClass() != o.getClass()) return false;
         InnerPair<?, ?> innerPair = (InnerPair<?, ?>) o;
         return key.equals(innerPair.key) &&
-                value.equals(innerPair.value) &&
-                Objects.equals(elements, innerPair.elements);
+                value.equals(innerPair.value);
+    }
+
+    public InnerPair getNextElement() {
+        return nextElement;
+    }
+
+    public void setNextElement(InnerPair nextElement) {
+        this.nextElement = nextElement;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(key, value, elements);
+        return Objects.hash(key, value);
     }
 
     public K getKey() {
@@ -44,13 +50,5 @@ public class InnerPair<K, V> {
 
     public void setValue(V value) {
         this.value = value;
-    }
-
-    public List<InnerPair<K, V>> getElements() {
-        return elements;
-    }
-
-    public void setElements(List<InnerPair<K, V>> elements) {
-        this.elements = elements;
     }
 }

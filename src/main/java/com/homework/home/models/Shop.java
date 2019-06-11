@@ -1,31 +1,27 @@
 package com.homework.home.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
+import java.util.Objects;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Shop {
 
-    @Id
+
     private Long id;
 
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "shop")
-    private List<Water> waterList;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "shop")
-    private List<Pants> pantsList;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Shop shop = (Shop) o;
+        return id.equals(shop.id) &&
+                name.equals(shop.name);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
 }
