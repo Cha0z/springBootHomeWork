@@ -3,6 +3,7 @@ package com.homework.home.map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 public class OwnMap<K, V> {
 
@@ -11,6 +12,14 @@ public class OwnMap<K, V> {
 
     public OwnMap() {
         elements = new ArrayList<>(16);
+
+        addSizeToList();
+    }
+
+    private void addSizeToList() {
+        for (int i=1; i<16;i++) {
+            elements.add(null);
+        }
     }
 
     public Integer getSize() {
