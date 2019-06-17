@@ -23,6 +23,11 @@ public class InnerPair<K, V> {
                 value.equals(innerPair.value);
     }
 
+    public InnerPair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
     public InnerPair getNextElement() {
         return nextElement;
     }

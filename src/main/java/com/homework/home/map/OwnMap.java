@@ -3,11 +3,12 @@ package com.homework.home.map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import javax.persistence.criteria.CriteriaBuilder.In;
 
 public class OwnMap<K, V> {
 
-    private List<InnerPair> elements;
+    private List<InnerPair<K, V>> elements;
+
+    private Integer counter = 0;
 
 
     public OwnMap() {
@@ -17,48 +18,61 @@ public class OwnMap<K, V> {
     }
 
     private void addSizeToList() {
-        for (int i=1; i<16;i++) {
+        for (int i = 1; i < 16; i++) {
             elements.add(null);
         }
     }
 
     public Integer getSize() {
-        Integer size = 0;
-
-        for (InnerPair pair : elements) {
-            if (pair != null) {
-                size++;
-            }
-        }
-        return size;
+       return counter;
     }
+
+    private void countInnerElements(InnerPair<K, V> innerPair, Integer size) {
+        if (innerPair.getNextElement() != null) {
+            size++;
+            countInnerElements(innerPair, size);
+        }
+    }
+
 
     public V put(K key, V value) {
         int numberOfBucket = numberOfBucket(key);
         V oldValue = null;
         if (elements.get(numberOfBucket) == null) {
-            InnerPair innerPair = getInnerPair(key, value);
+            InnerPair<K, V> innerPair = getInnerPair(key, value);
             elements.add(numberOfBucket, innerPair);
         } else {
             if (key.equals(elements.get(numberOfBucket).getKey())) {
-                oldValue = (V) elements.get(numberOfBucket).getValue();
+                oldValue = elements.get(numberOfBucket).getValue();
                 elements.get(numberOfBucket).setValue(value);
             } else {
-                InnerPair innerPair = getInnerPair(key, value);
-                elements.get(numberOfBucket).setNextElement(innerPair);
+                InnerPair<K, V> innerPair = getInnerPair(key, value);
+                InnerPair lastPair = getLastInnerPair(elements.get(numberOfBucket));
+                lastPair.setNextElement(innerPair);
             }
         }
+        counter++;
         return oldValue;
     }
 
-    private InnerPair getInnerPair(K key, V value) {
-        InnerPair innerPair = new InnerPair();
-        innerPair.setKey(key);
-        innerPair.setValue(value);
-        return innerPair;
+
+    private InnerPair getLastInnerPair(InnerPair innerPair) {
+        if (innerPair.getNextElement() != null) {
+            getLastInnerPair(innerPair.getNextElement());
+        } else {
+            return innerPair;
+        }
+        return null;
+    }
+
+    private InnerPair<K, V> getInnerPair(K key, V value) {
+        return new InnerPair<>(key, value);
     }
 
     private int numberOfBucket(K key) {
+        if (key == null) {
+            return 1;
+        }
         return key.hashCode() % elements.size();
     }
 
@@ -66,16 +80,16 @@ public class OwnMap<K, V> {
         int numberOfBucket = numberOfBucket(key);
         Optional<InnerPair> checkingValue = Optional.ofNullable(elements.get(numberOfBucket));
 
-        return checkingValue.map(innerPair -> analyzeKey(innerPair, key)).orElse(null);
+        return checkingValue.map(innerPair -> getValueUsingKey(innerPair, key)).orElse(null);
     }
 
-    private V analyzeKey(InnerPair innerPair, K key) {
+    private V getValueUsingKey(InnerPair innerPair, K key) {
 
         if (innerPair.getKey().equals(key)) {
             return (V) innerPair.getValue();
         } else {
             if (innerPair.getNextElement() != null) {
-                return analyzeKey(innerPair, key);
+                return getValueUsingKey(innerPair.getNextElement(), key);
             }
         }
         return null;
