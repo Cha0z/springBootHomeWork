@@ -16,9 +16,9 @@ spring:
                 physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
                 implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
 
-
-
-
 auth:
-    username: user
-    password: 12345
+    user:
+        name: user
+        password: 12345
+    jws:
+        code: setCodeHere
