@@ -1,12 +1,10 @@
 package com.homework.home.service;
 
 import com.homework.home.models.Shop;
-import com.homework.home.models.Water;
 import com.homework.home.repository.ShopRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ShopServiceImpl implements ShopService {
@@ -27,8 +25,8 @@ public class ShopServiceImpl implements ShopService {
         return shopRepository.findByNameContaining(name);
     }
 
-    public List<Shop> getAllShopWithNameAndWithManufacturer(String name, String manufacturer) {
-       return shopRepository.findByNameContainingAndWaterManufacturer(name, manufacturer);
-    }
+//    public List<Shop> getAllShopWithNameAndWithManufacturer(String name, String manufacturer) {
+//       return shopRepository.findByNameContainingAndWaterWaterManufacturer(name, manufacturer);
+//    }
 
 }

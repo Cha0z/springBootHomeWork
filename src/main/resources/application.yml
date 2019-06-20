@@ -1,19 +1,20 @@
 spring:
     datasource:
-        url : jdbc:mysql://localhost:3306/springboot
+        url : jdbc:mysql://localhost:3306/springboot?createDatabaseIfNotExist=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
         username : root
         password : root
         driver-class-name : com.mysql.jdbc.Driver
-    data:
-        jpa:
-            repositories:
-                enabled: true # Whether to enable JPA repositories.
-            generate-ddl: true # Whether to initialize the schema on startup.
-            show-sql: false # Whether to enable logging of SQL statements.
-            hibernate:
-                ddl-auto: true # DDL mode. This is actually a shortcut for the "hibernate.hbm2ddl.auto" property. Defaults to "create-drop" when using an embedded database and no schema manager was detected. Otherwise, defaults to "none".
-                naming:
-                    implicit-strategy: create # Fully qualified name of the implicit naming strategy.
+        initialize: true
+    jpa:
+        database-platform: org.hibernate.dialect.SQLServerDialect
+        show-sql: false
+        generate-ddl: true
+        hibernate:
+            dialect: org.hibernate.dialect.MySQLDialect
+            ddl-auto: create
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+                implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
 
 
 

@@ -34,11 +34,11 @@ public class ShopController {
         return shopService.getShopsWithName(name);
     }
 
-    @GetMapping("/get/{name}")
-    public List<Shop> getShopByContributor(@RequestParam("manufacturer") String manufacturer,
-                                           @PathVariable String name) {
-        return shopService.getAllShopWithNameAndWithManufacturer(name, manufacturer);
-    }
+//    @GetMapping("/get/{name}")
+//    public List<Shop> getShopByContributor(@RequestParam("manufacturer") String manufacturer,
+//                                           @PathVariable String name) {
+//        return shopService.getAllShopWithNameAndWithManufacturer(name, manufacturer);
+//    }
 
 
 }

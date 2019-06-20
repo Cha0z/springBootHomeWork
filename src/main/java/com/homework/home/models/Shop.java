@@ -22,9 +22,9 @@ public class Shop {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "shop")
-    private List<Water> waterList;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "shop")
-    private List<Pants> pantsList;
+    private List<Water> water;
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "shop")
+//    private List<Pants> pantsList;
 
 
 

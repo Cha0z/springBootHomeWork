@@ -10,7 +10,7 @@ import java.util.List;
 public interface ShopRepository extends JpaRepository<Shop,Long> {
 
     List<Shop> findByNameContaining(String name);
-    List<Shop> findByNameContainingAndWaterManufacturer(String name,String manufacturer);
+//    List<Shop> findByNameContainingAndWaterWaterManufacturer(String name,String manufacturer);
 
 
 }
