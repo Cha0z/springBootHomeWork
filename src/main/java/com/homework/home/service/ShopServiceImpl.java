@@ -31,4 +31,10 @@ public class ShopServiceImpl implements ShopService {
        return shopRepository.findByNameContainingAndWaterManufacturer(name, manufacturer);
     }
 
+    @Override
+    public List<Shop> getAll() {
+        return shopRepository.findAll();
+    }
+
+
 }

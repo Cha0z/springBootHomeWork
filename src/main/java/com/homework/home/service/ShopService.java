@@ -14,4 +14,6 @@ public interface ShopService {
     List<Shop> getShopsWithName(String name);
 
     List<Shop> getAllShopWithNameAndWithManufacturer(String name, String manufacturer);
+
+    List<Shop> getAll();
 }
