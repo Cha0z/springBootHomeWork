@@ -19,7 +19,7 @@ public class SocketEndPoint {
 
 
     private Session session;
-    private static Set<SocketEndPoint> chatEndpoints
+    private static Set<SocketEndPoint> SocketEndpoints
             = new CopyOnWriteArraySet<>();
 
     private static HashMap<String, String> users = new HashMap<>();
@@ -30,7 +30,7 @@ public class SocketEndPoint {
             @PathParam("user") String username) throws IOException {
 
         this.session = session;
-        chatEndpoints.add(this);
+        SocketEndpoints.add(this);
         users.put(session.getId(), username);
 
         Message message = new Message();
@@ -50,7 +50,7 @@ public class SocketEndPoint {
     @OnClose
     public void onClose(Session session) throws IOException {
 
-        chatEndpoints.remove(this);
+        SocketEndpoints.remove(this);
         Message message = new Message();
         message.setFrom(users.get(session.getId()));
         message.setContent("Disconnected!");
@@ -64,7 +64,7 @@ public class SocketEndPoint {
 
     private static void broadcast(Message message) {
 
-        chatEndpoints.forEach(endpoint -> {
+        SocketEndpoints.forEach(endpoint -> {
             synchronized (endpoint) {
                 try {
                     endpoint.session.getBasicRemote().
