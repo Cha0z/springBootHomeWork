@@ -2,6 +2,8 @@ package com.homework.home.web.controller;
 
 
 import com.homework.home.models.Message;
+import com.homework.home.web.encoder.MessageDecoder;
+import com.homework.home.web.encoder.MessageEncoder;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -11,7 +13,8 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-@ServerEndpoint(value = "socket/{user}")
+@ServerEndpoint(value = "socket/{user}", decoders = MessageDecoder.class, encoders = MessageEncoder.class
+)
 public class SocketEndPoint {
 
 
