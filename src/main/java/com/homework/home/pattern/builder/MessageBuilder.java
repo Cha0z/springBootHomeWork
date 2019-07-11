@@ -8,7 +8,7 @@ public class MessageBuilder {
 
     private Message message;
 
-    public MessageBuilder() {
+      public MessageBuilder() {
         message = new Message();
     }
 
@@ -32,6 +32,8 @@ public class MessageBuilder {
         return this;
     }
 
+
+    public static MessageBuilder builder(){return new MessageBuilder();}
 
     public Message build() {
         return message;
