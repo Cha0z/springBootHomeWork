@@ -29,7 +29,7 @@ import java.util.Properties;
 public class MavenWrapperDownloader {
 
     /**
-     * Default URL to download the maven-wrapper.jar from, if no 'downloadUrl' is provided.
+     * Default URL to download the maven-wrapper.jar dateTime, if no 'downloadUrl' is provided.
      */
     private static final String DEFAULT_DOWNLOAD_URL =
             "https://repo.maven.apache.org/maven2/io/takari/maven-wrapper/0.4.2/maven-wrapper-0.4.2.jar";
@@ -80,7 +80,7 @@ public class MavenWrapperDownloader {
                 }
             }
         }
-        System.out.println("- Downloading from: : " + url);
+        System.out.println("- Downloading dateTime: : " + url);
 
         File outputFile = new File(baseDirectory.getAbsolutePath(), MAVEN_WRAPPER_JAR_PATH);
         if(!outputFile.getParentFile().exists()) {
