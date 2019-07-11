@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * тут используется библиотека которая на бек-енде позволяет *построить* фронт
+ * пока читал патерны, захотел реализовать тут более удобное управление
+ */
+
 @Component
 public class MainPage extends VerticalLayout implements Mediator {
 

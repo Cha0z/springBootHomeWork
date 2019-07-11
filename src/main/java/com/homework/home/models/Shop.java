@@ -21,6 +21,8 @@ public class Shop {
 
     private String name;
 
+    private ShopStatus status;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "shop")
     private List<Water> waterList;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "shop")
