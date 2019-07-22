@@ -3,7 +3,9 @@ package com.homework.home.map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class OwnMap<K, V> {
 
     private List<InnerPair<K, V>> elements;
@@ -37,6 +39,7 @@ public class OwnMap<K, V> {
 
     public V put(K key, V value) {
         int numberOfBucket = numberOfBucket(key);
+        log.debug("Chosen position for key: {} ", numberOfBucket);
         V oldValue = null;
         if (elements.get(numberOfBucket) == null) {
             InnerPair<K, V> innerPair = getInnerPair(key, value);
@@ -52,6 +55,9 @@ public class OwnMap<K, V> {
             }
         }
         counter++;
+
+        log.info("Element was added :{} for key {}", value,key);
+
         return oldValue;
     }
 
@@ -77,7 +83,9 @@ public class OwnMap<K, V> {
     }
 
     public V get(K key) {
+
         int numberOfBucket = numberOfBucket(key);
+        log.debug("Chosen position for key: {} ", numberOfBucket);
         Optional<InnerPair> checkingValue = Optional.ofNullable(elements.get(numberOfBucket));
 
         return checkingValue.map(innerPair -> getValueUsingKey(innerPair, key)).orElse(null);

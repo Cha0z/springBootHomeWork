@@ -1,9 +1,11 @@
 package com.homework.home.pattern.factory.model;
 
 
+import com.homework.home.models.Message;
+
 /**
  * just for task
  */
-public class InfoMessage implements UserMessage {
+public class InfoMessage extends Message implements UserMessage {
 
 }

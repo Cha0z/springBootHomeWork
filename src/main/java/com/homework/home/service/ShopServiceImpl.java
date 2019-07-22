@@ -1,7 +1,6 @@
 package com.homework.home.service;
 
 import com.homework.home.models.Shop;
-import com.homework.home.models.Water;
 import com.homework.home.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
