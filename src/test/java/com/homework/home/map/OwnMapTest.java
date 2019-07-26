@@ -1,4 +1,4 @@
-package com.homework.home;
+package com.homework.home.map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,13 +26,7 @@ public class OwnMapTest {
     assertEquals(testValue, ownMap.get(testKey));
   }
 
-  @Test
-  public void countTest() {
-    Integer expectedTimes = 5;
-    Integer index = 5;
-    addElementsToMap(index);
-    assertEquals(expectedTimes, ownMap.getSize());
-  }
+
 
   private void addElementsToMap(Integer index) {
     Random random = new Random();
