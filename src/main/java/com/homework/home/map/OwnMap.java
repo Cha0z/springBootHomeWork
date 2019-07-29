@@ -3,6 +3,7 @@ package com.homework.home.map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -26,7 +27,7 @@ public class OwnMap<K, V> {
     }
 
     public Integer getSize() {
-       return counter;
+        return counter;
     }
 
     private void countInnerElements(InnerPair<K, V> innerPair, Integer size) {
@@ -48,6 +49,7 @@ public class OwnMap<K, V> {
             if (key.equals(elements.get(numberOfBucket).getKey())) {
                 oldValue = elements.get(numberOfBucket).getValue();
                 elements.get(numberOfBucket).setValue(value);
+                counter--;
             } else {
                 InnerPair<K, V> innerPair = getInnerPair(key, value);
                 InnerPair lastPair = getLastInnerPair(elements.get(numberOfBucket));
@@ -55,9 +57,7 @@ public class OwnMap<K, V> {
             }
         }
         counter++;
-
-        log.info("Element was added :{} for key {}", value,key);
-
+        log.info("Element was added :{} for key {}", value, key);
         return oldValue;
     }
 

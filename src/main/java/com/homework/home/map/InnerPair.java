@@ -7,7 +7,6 @@ import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class InnerPair<K, V> {
     private K key;
     private V value;
