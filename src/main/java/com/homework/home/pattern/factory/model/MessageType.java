@@ -2,6 +2,6 @@ package com.homework.home.pattern.factory.model;
 
 public enum  MessageType {
 
-  ALLERT, INFO, FOR_TEST
+  ALLERT, INFO
 
 }

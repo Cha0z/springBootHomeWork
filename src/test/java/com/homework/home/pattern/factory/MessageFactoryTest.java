@@ -1,12 +1,13 @@
-package com.homework.home;
+package com.homework.home.pattern.factory;
 
-import com.homework.home.pattern.factory.MessageFactory;
 import com.homework.home.pattern.factory.model.InfoMessage;
 import com.homework.home.pattern.factory.model.MessageType;
 import com.homework.home.pattern.factory.model.UserMessage;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class MessageFactoryTest {
 
@@ -20,12 +21,15 @@ public class MessageFactoryTest {
   @Test
   public void getMessage() {
     UserMessage userMessage = messageFactory.getMessage(MessageType.INFO);
-    Assert.assertTrue(userMessage instanceof InfoMessage);
+    assertTrue(userMessage instanceof InfoMessage);
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void getException() {
-   messageFactory.getMessage(MessageType.FOR_TEST);
+  @Test
+  public void testAllMessageTypes() {
+    for(MessageType type:MessageType.values()){
+      assertNotNull(messageFactory.getMessage(type));
+    }
+
   }
 
 }
