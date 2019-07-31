@@ -45,15 +45,18 @@ public class OwnMap<K, V> {
         if (elements.get(numberOfBucket) == null) {
             InnerPair<K, V> innerPair = getInnerPair(key, value);
             elements.add(numberOfBucket, innerPair);
+            log.debug("Add element for a new bucket for key :{}", key);
         } else {
             if (key.equals(elements.get(numberOfBucket).getKey())) {
                 oldValue = elements.get(numberOfBucket).getValue();
                 elements.get(numberOfBucket).setValue(value);
                 counter--;
+                log.debug("Update bucket value for key :{}", key);
             } else {
                 InnerPair<K, V> innerPair = getInnerPair(key, value);
                 InnerPair lastPair = getLastInnerPair(elements.get(numberOfBucket));
                 lastPair.setNextElement(innerPair);
+                log.debug("Same hash, add element to next element field in bucket :{}", key);
             }
         }
         counter++;

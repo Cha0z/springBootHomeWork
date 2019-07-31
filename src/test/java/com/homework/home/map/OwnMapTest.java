@@ -1,38 +1,40 @@
-package com.homework.home.map;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.Random;
+package com.homework.home;
 
 import static org.junit.Assert.assertEquals;
 
+import com.homework.home.map.OwnMap;
+import org.junit.Before;
+import org.junit.Test;
+
 public class OwnMapTest {
 
-    private OwnMap ownMap;
+    private OwnMap<Integer, String> ownMap;
 
     private Integer testKey = 1;
     private String testValue = "test";
+    private String testValueForSameHashCode = "same";
 
 
     @Before
     public void init() {
-        ownMap = new OwnMap();
+        ownMap = new OwnMap<>();
     }
 
     @Test
-    public void addingTest() {
+    public void addingElementToEmptyBucketTest() {
         ownMap.put(testKey, testValue);
+        ownMap.put(testKey + 1, "asd");
+        ownMap.put(testKey + 2, "qwe");
+        ownMap.put(testKey + 3, "azx");
+
         assertEquals(testValue, ownMap.get(testKey));
+        assertEquals(String.valueOf(4), ownMap.getSize().toString());
     }
 
-
-    private void addElementsToMap(Integer index) {
-        Random random = new Random();
-        while (index != 0) {
-            ownMap.put(random.nextInt(20), testValue);
-            index--;
-        }
+    @Test
+    public void addingElementToBucketWithSameHashCode() {
+        ownMap.put(testKey, testValue);
+        ownMap.put(testKey, testValueForSameHashCode);
+        assertEquals(testValueForSameHashCode, ownMap.get(testKey));
     }
-
 }
